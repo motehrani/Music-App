@@ -16,6 +16,8 @@ const Player = ({ currentSong }) => {
 
     // in react world
     audioRef.current?.play()
+
+    alert(document.querySelector('audio') === audioRef.current)
   };
   return (
     <div className="player">
