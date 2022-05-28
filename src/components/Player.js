@@ -12,10 +12,12 @@ const Player = ({ currentSong }) => {
   // Event Handler
   const playSongHandler = () => {
     // in vanilla js
-    document.querySelector('audio')?.play()
+    document.querySelector("audio")?.play();
 
     // in react world
-    audioRef.current?.play()
+    audioRef.current?.play();
+
+    alert(document.querySelector("audio") === audioRef.current);
   };
   return (
     <div className="player">
