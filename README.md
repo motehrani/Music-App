@@ -41,8 +41,12 @@ import '...'
 ```
 > all ways to export something:
 ```js
+// if module is defined in another file :
 export * from '...'
 export { assignedName } from '...'
 export defaultName from '...'
+
+// if module is defined in current file
 export default moduleName
+export function FN(){}  /** OR **/ export const CONSTANT = "stuff"
 ```
