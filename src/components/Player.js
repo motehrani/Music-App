@@ -11,7 +11,11 @@ const Player = ({ currentSong }) => {
   const audioRef = useRef(null);
   // Event Handler
   const playSongHandler = () => {
-    console.log(audioRef.current);
+    // in vanilla js
+    document.querySelector('audio')?.play()
+
+    // in react world
+    audioRef.current?.play()
   };
   return (
     <div className="player">
