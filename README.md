@@ -39,7 +39,7 @@ import defaultName from '...'
 import { assignName } from '...'
 import '...'
 ```
-> all ways to import something:
+> all ways to export something:
 ```js
 export * from '...'
 export { assignedName } from '...'
