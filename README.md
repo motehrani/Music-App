@@ -37,7 +37,7 @@ if not, u should say:
 ```js
 import defaultName from '...'
 import { assignName } from '...'
-import from '...'
+import '...'
 ```
 > all ways to import something:
 ```js
