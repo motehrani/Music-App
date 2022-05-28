@@ -37,12 +37,16 @@ if not, u should say:
 ```js
 import defaultName from '...'
 import { assignName } from '...'
-import * from '...'
+import '...'
 ```
-> all ways to import something:
+> all ways to export something:
 ```js
+// if module is defined in another file :
 export * from '...'
 export { assignedName } from '...'
 export defaultName from '...'
+
+// if module is defined in current file
 export default moduleName
+export function FN(){}  /** OR **/ export const CONSTANT = "stuff"
 ```
