@@ -1,9 +1,8 @@
 import React from "react";
 
-const LibrarySong = ({ song, songs, setCurrentSong, index }) => {
+const LibrarySong = ({ song, songs, id, setCurrentSong }) => {
   const songSelectHandler = () => {
-    const selectedSong = songs.filter((state) => state.index === index);
-    setCurrentSong(selectedSong[0]);
+    const selectedSong = songs.filter((state) => state.id === id);
   };
   return (
     <div className="library-song" onClick={songSelectHandler}>
