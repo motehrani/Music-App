@@ -10,8 +10,7 @@ const Library = ({ songs, setCurrentSong }) => {
           <LibrarySong
             songs={songs}
             song={song}
-            key={song.id}
-            id={song.id}
+            key={index}
             setCurrentSong={setCurrentSong}
           />
         ))}
