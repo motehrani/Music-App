@@ -3,6 +3,8 @@ import React from "react";
 const LibrarySong = ({ song, songs, setCurrentSong, audioRef, isPlaying }) => {
   const songSelectHandler = () => {
     setCurrentSong(song);
+    //Add active state
+    const newSongs = songs.map((song) => {});
     //check if the song is playing
     if (isPlaying) {
       const playPromise = audioRef.current.play(); //what these 4 lines mean?
