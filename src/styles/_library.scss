@@ -50,6 +50,10 @@
   width: 5px;
 }
 
+.selected {
+  background: rgb(255, 130, 255);
+}
+
 *::-webkit-scrollbar-track {
   background: transparent;
 }

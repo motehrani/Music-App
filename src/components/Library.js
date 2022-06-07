@@ -13,6 +13,7 @@ const Library = ({ songs, setCurrentSong, audioRef, isPlaying }) => {
             setCurrentSong={setCurrentSong}
             audioRef={audioRef}
             isPlaying={isPlaying}
+            songs={songs}
           />
         ))}
       </div>
