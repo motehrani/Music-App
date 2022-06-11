@@ -7,6 +7,9 @@
   background: white;
   box-shadow: 2px 2px 50px rgb(204, 204, 204);
   overflow: scroll;
+  transform: translateX(-100%); // what is translateZ & 3d
+  transition: all 0.5s ease; // what really all parameters of transition do
+  opacity: 0;
 
   h2 {
     padding: 2rem;
@@ -50,10 +53,6 @@
   width: 5px;
 }
 
-.selected {
-  background: rgb(255, 130, 255);
-}
-
 *::-webkit-scrollbar-track {
   background: transparent;
 }
@@ -62,4 +61,13 @@
   background-color: rgba(155, 155, 155, 0.5);
   border-radius: 20px;
   border: transparent;
+}
+
+.selected {
+  background: rgb(255, 130, 255);
+}
+
+.active-library {
+  transform: translateX(0%);
+  opacity: 1;
 }

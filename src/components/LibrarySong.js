@@ -1,10 +1,31 @@
 import React from "react";
 
-const LibrarySong = ({ song, songs, setCurrentSong, audioRef, isPlaying }) => {
+const LibrarySong = ({
+  song,
+  songs,
+  setCurrentSong,
+  audioRef,
+  isPlaying,
+  setSongs,
+  id, //where is this id come from???????????
+}) => {
   const songSelectHandler = () => {
     setCurrentSong(song);
     //Add active state
-    const newSongs = songs.map((song) => {});
+    const newSongs = songs.map((song) => {
+      if (song.id === id) {
+        return {
+          ...song,
+          active: true,
+        };
+      } else {
+        return {
+          ...song,
+          active: false,
+        };
+      }
+    });
+    setSongs(newSongs);
     //check if the song is playing
     if (isPlaying) {
       const playPromise = audioRef.current.play(); //what these 4 lines mean?
