@@ -35,10 +35,10 @@ const Player = ({
     });
     setSongs(newSongs);
   }, [currentSong]);
-  //Ed:" ok so i think every thing else is fine. so now at the enf of this useEffect we should say when
+  //Ed:"ok so i think every thing else is fine. so now at the enf of this useEffect we should say when
   //do we want to run this... im on to say run this function every time our currentSong gets updated"
   //now i know that there iss only one thing that can change in songs and thats active now my question is
-  //about the way that ed write this line up here & could we say currentSong.active === true?? instead of that
+  //about the way that ed write this line up here & could we say "currentSong.active === true" instead of that
   // Event Handler
   const playSongHandler = () => {
     // in vanilla js

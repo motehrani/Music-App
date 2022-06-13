@@ -7,7 +7,7 @@ import Song from "./components/Song";
 import Library from "./components/Library";
 import Nav from "./components/Nav"; // I accidentally wrote all name of Nav components like "nav" and it did'nt work. wtf?
 // import util
-import data from "./util";
+import data from "./data";
 
 function App() {
   // Ref
