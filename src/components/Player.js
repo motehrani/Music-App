@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlay,
@@ -16,7 +16,29 @@ const Player = ({
   setIsPlaying,
   audioRef,
   songs,
+  setSongs,
 }) => {
+  //useEffect...episode 19.Active Song Skipping
+  useEffect(() => {
+    const newSongs = songs.map((song) => {
+      if (song.id === currentSong.id) {
+        return {
+          ...song,
+          active: true,
+        };
+      } else {
+        return {
+          ...song,
+          active: false,
+        };
+      }
+    });
+    setSongs(newSongs);
+  }, [currentSong]);
+  //Ed:" ok so i think every thing else is fine. so now at the enf of this useEffect we should say when
+  //do we want to run this... im on to say run this function every time our currentSong gets updated"
+  //now i know that there iss only one thing that can change in songs and thats active now my question is
+  //about the way that ed write this line up here & could we say currentSong.active === true?? instead of that
   // Event Handler
   const playSongHandler = () => {
     // in vanilla js
@@ -62,7 +84,7 @@ const Player = ({
         <p>{getTime(songInfo.currentTime)}</p>
         <input
           min={0}
-          max={songInfo.duration || 0} // so what really this or thing do
+          max={songInfo.duration || 0} // so what really this "or" thing do
           value={songInfo.currentTime}
           onChange={dragHandler}
           type="range"

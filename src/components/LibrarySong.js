@@ -24,6 +24,10 @@ const LibrarySong = ({
           active: false,
         };
       }
+      //khob in dar vaqea har bari ke ye songi ro select mikonim miad
+      //hame ye bar az aval hame song haro be qoli upload mikone ke in too
+      //teadade balaye song ha baes mishe ke alaki data load she too
+      //khob in che vazeshe ya in ke asan injooria nist
     });
     setSongs(newSongs);
     //check if the song is playing

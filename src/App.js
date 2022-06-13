@@ -5,7 +5,7 @@ import "./styles/app.scss";
 import Player from "./components/Player";
 import Song from "./components/Song";
 import Library from "./components/Library";
-import Nav from "./components/Nav"; // I accidentally write all name of Nav components like "nav" and it did'nt work. wtf?
+import Nav from "./components/Nav"; // I accidentally wrote all name of Nav components like "nav" and it did'nt work. wtf?
 // import util
 import data from "./util";
 
@@ -39,6 +39,7 @@ function App() {
         songInfo={songInfo}
         setSongInfo={setSongInfo}
         songs={songs}
+        setSongs={setSongs}
       />
       <Library
         songs={songs}
