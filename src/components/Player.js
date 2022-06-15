@@ -6,6 +6,7 @@ import {
   faAngleRight,
   faPause,
 } from "@fortawesome/free-solid-svg-icons";
+import { PlayAudio } from "../util";
 
 const Player = ({
   songInfo,
@@ -76,20 +77,26 @@ const Player = ({
         setCurrentSong(songs[(currentIndex - 1) % songs.length]);
       }
     }
+    PlayAudio(isPlaying, audioRef);
   };
 
   return (
     <div className="player">
       <div className="time-control">
         <p>{getTime(songInfo.currentTime)}</p>
-        <input
-          min={0}
-          max={songInfo.duration || 0} // so what really this "or" thing do
-          value={songInfo.currentTime}
-          onChange={dragHandler}
-          type="range"
-        />
-        <p>{getTime(songInfo.duration)}</p>
+        <div className="track">
+          <input
+            min={0}
+            max={songInfo.duration || 0} // so what really this "or" thing do
+            value={songInfo.currentTime}
+            onChange={dragHandler}
+            type="range"
+          />
+          <div className="animate-track"></div>
+        </div>
+        <p>{songInfo.duration ? getTime(songInfo.duration) : "0:00"}</p>
+        {/* well i know what this line would do but i don't know how & so why //
+        before now he write these code inside backtick */}
       </div>
       <div className="play-control">
         <FontAwesomeIcon
