@@ -5,7 +5,7 @@ import "./styles/app.scss";
 import Player from "./components/Player";
 import Song from "./components/Song";
 import Library from "./components/Library";
-import Nav from "./components/Nav"; // I accidentally wrote all name of Nav components like "nav" and it did'nt work. wtf?
+import Nav from "./components/Nav";
 // import util
 import data from "./data";
 
@@ -20,11 +20,22 @@ function App() {
   const [songInfo, setSongInfo] = useState({
     currentTime: "",
     duration: "",
+    animationPercentage: 0,
   });
   const timeUpdateHandler = (e) => {
     const current = e.target.currentTime;
     const duration = e.target.duration;
-    setSongInfo({ ...songInfo, currentTime: current, duration });
+    //Calculate Percentage
+    const roundedCurrent = Math.round(current);
+    const roundedDuration = Math.round(duration);
+    const animation = Math.round((roundedCurrent / roundedDuration) * 100);
+    console.log(animation);
+    setSongInfo({
+      ...songInfo,
+      currentTime: current,
+      duration,
+      animationPercentage: animation,
+    });
   };
   return (
     <div className="App">
