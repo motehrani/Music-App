@@ -17,6 +17,7 @@ const Player = ({
   audioRef,
   songs,
   setSongs,
+  skipTrackHandler,
 }) => {
   //useEffect...episode 19.Active Song Skipping
   useEffect(() => {
@@ -64,21 +65,7 @@ const Player = ({
     audioRef.current.currentTime = e.target.value;
     setSongInfo({ ...songInfo, currentTime: e.target.value });
   };
-  const skipTrackHandler = async (direction) => {
-    let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
-    if (direction === "skip-forward") {
-      await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
-    }
-    if (direction === "skip-back") {
-      if ((currentIndex - 1) % songs.length === -1) {
-        await setCurrentSong(songs[songs.length - 1]);
-        if (isPlaying) audioRef.current.play();
-      } else {
-        await setCurrentSong(songs[(currentIndex - 1) % songs.length]);
-      }
-    }
-    if (isPlaying) audioRef.current.play();
-  };
+
   //Add the styles
   const trackAnim = {
     transform: `translateX(${songInfo.animationPercentage}%)`,

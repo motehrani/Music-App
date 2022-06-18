@@ -37,6 +37,21 @@ function App() {
       animationPercentage: animation,
     });
   };
+  const skipTrackHandler = async (direction) => {
+    let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
+    if (direction === "skip-forward") {
+      await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+    }
+    if (direction === "skip-back") {
+      if ((currentIndex - 1) % songs.length === -1) {
+        await setCurrentSong(songs[songs.length - 1]);
+        if (isPlaying) audioRef.current.play();
+      } else {
+        await setCurrentSong(songs[(currentIndex - 1) % songs.length]);
+      }
+    }
+    if (isPlaying) audioRef.current.play();
+  };
   return (
     <div className="App">
       <Nav libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus} />
@@ -51,6 +66,7 @@ function App() {
         setSongInfo={setSongInfo}
         songs={songs}
         setSongs={setSongs}
+        skipTrackHandler={skipTrackHandler}
       />
       <Library
         songs={songs}
@@ -65,6 +81,7 @@ function App() {
         onLoadedMetadata={timeUpdateHandler}
         ref={audioRef}
         src={currentSong.audio}
+        onEnded={skipTrackHandler("skip-forward")}
       ></audio>
     </div>
   );
