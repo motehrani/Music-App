@@ -29,7 +29,6 @@ function App() {
     const roundedCurrent = Math.round(current);
     const roundedDuration = Math.round(duration);
     const animation = Math.round((roundedCurrent / roundedDuration) * 100);
-    console.log(animation);
     setSongInfo({
       ...songInfo,
       currentTime: current,
@@ -37,23 +36,14 @@ function App() {
       animationPercentage: animation,
     });
   };
-  const skipTrackHandler = async (direction) => {
+  const songEndHandler = async () => {
     let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
-    if (direction === "skip-forward") {
-      await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
-    }
-    if (direction === "skip-back") {
-      if ((currentIndex - 1) % songs.length === -1) {
-        await setCurrentSong(songs[songs.length - 1]);
-        if (isPlaying) audioRef.current.play();
-      } else {
-        await setCurrentSong(songs[(currentIndex - 1) % songs.length]);
-      }
-    }
+    await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
     if (isPlaying) audioRef.current.play();
   };
   return (
-    <div className="App">
+    <div className={`App ${libraryStatus ? "library-active" : ""}`}>
+      {/* episode 23 at 5:8... why mine doesn't work */}
       <Nav libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus} />
       <Song currentSong={currentSong} />
       <Player
@@ -66,7 +56,6 @@ function App() {
         setSongInfo={setSongInfo}
         songs={songs}
         setSongs={setSongs}
-        skipTrackHandler={skipTrackHandler}
       />
       <Library
         songs={songs}
@@ -81,7 +70,7 @@ function App() {
         onLoadedMetadata={timeUpdateHandler}
         ref={audioRef}
         src={currentSong.audio}
-        onEnded={skipTrackHandler("skip-forward")}
+        onEnded={songEndHandler}
       ></audio>
     </div>
   );

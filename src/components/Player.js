@@ -17,7 +17,6 @@ const Player = ({
   audioRef,
   songs,
   setSongs,
-  skipTrackHandler,
 }) => {
   //useEffect...episode 19.Active Song Skipping
   useEffect(() => {
@@ -40,6 +39,7 @@ const Player = ({
   //do we want to run this... im on to say run this function every time our currentSong gets updated"
   //now i know that there iss only one thing that can change in songs and thats active now my question is
   //about the way that ed write this line up here & could we say "currentSong.active === true" instead of that
+
   // Event Handler
   const playSongHandler = () => {
     // in vanilla js
@@ -66,6 +66,21 @@ const Player = ({
     setSongInfo({ ...songInfo, currentTime: e.target.value });
   };
 
+  const skipTrackHandler = async (direction) => {
+    let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
+    if (direction === "skip-forward") {
+      await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+    }
+    if (direction === "skip-back") {
+      if ((currentIndex - 1) % songs.length === -1) {
+        await setCurrentSong(songs[songs.length - 1]);
+        if (isPlaying) audioRef.current.play();
+      } else {
+        await setCurrentSong(songs[(currentIndex - 1) % songs.length]);
+      }
+    }
+    if (isPlaying) audioRef.current.play();
+  };
   //Add the styles
   const trackAnim = {
     transform: `translateX(${songInfo.animationPercentage}%)`,
